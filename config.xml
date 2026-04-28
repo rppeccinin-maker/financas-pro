@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.financaspro.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets">
+    <name>Finanças Pro</name>
+    <description>Meu App de Finanças</description>
+    <author email="contato@exemplo.com">Seu Nome</author>
+    <content src="index.html" />
+    <access origin="*" />
+</widget>
