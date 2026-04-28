@@ -1,0 +1,39 @@
+name: Gerar APK
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Instalar Cordova
+        run: npm install -g cordova
+
+      - name: Preparar Android
+        run: |
+          cordova platform add android
+          mkdir -p www
+          cp index.html www/
+          cp config.xml .
+
+      - name: Configurar Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Construir APK
+        run: cordova build android --debug
+
+      - name: Subir APK Final
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-financas-debug
+          path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
